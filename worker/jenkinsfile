@@ -1,0 +1,22 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven 3.6.1' 
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building Worker app'
+				dir('worker'){
+					sh 'mvn compile'
+				}
+            }
+        }
+		stage(two) {
+			steps {
+				echo 'Step2'
+				sleep 5
+			}
+		}
+    }
+}
