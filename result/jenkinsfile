@@ -1,0 +1,30 @@
+pipeline {
+    agent any
+    tools {
+        nodejs 'NodeJS 8.9.0' 
+    }
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building Worker app'
+				dir('result'){
+					sh 'npm install'
+				}
+            }
+        }
+		stage('Test') {
+			steps {
+				echo 'Testing Worker app'
+				dir('result'){
+					sh 'npm install'
+					sh 'npm test'
+				}
+			}
+		}
+    }
+	post {
+		always {
+			echo 'Pipeline as Code'
+		}
+	}
+}
