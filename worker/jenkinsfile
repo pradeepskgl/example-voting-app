@@ -14,9 +14,20 @@ pipeline {
         }
 		stage(two) {
 			steps {
-				echo 'Step2'
-				sleep 5
+				echo 'Testing Worker app'
+				sh 'mvn test'
+			}
+		}
+		stage(three) {
+			steps {
+				echo 'Packaging Worker app'
+				sh 'mvn package'
 			}
 		}
     }
+	post {
+		always {
+			echo 'Pipeline as Code'
+		}
+	}
 }
